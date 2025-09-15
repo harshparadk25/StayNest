@@ -112,6 +112,10 @@ export const cancelBooking = async (req, res) => {
       return res.status(403).json({ message: "Unauthorized" });
     }
 
+    if(booking.status === "confirmed"){
+      return res.status(400).json({ message: "Cannot cancel a confirmed booking. Please contact support." });
+    }
+
     if (booking.status === "cancelled") {
       return res.status(400).json({ message: "Booking already cancelled" });
     }
