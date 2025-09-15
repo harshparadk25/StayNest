@@ -7,6 +7,7 @@ const app = express();
 import propertyRoutes from './routes/propertyRoutes.js';
 import bookingRoutes from './routes/bookingRoutes.js';
 import commentRoutes from './routes/commentRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 
 app.use(morgan('dev'));
 app.use(cors());
@@ -17,7 +18,11 @@ app.use('/users', userRoutes);
 app.use('/property', propertyRoutes);
 app.use('/booking', bookingRoutes);
 app.use('/comments', commentRoutes);
+app.use('/payments', paymentRoutes);
 
+app.get('/', (req, res) => {
+  res.send('API is running....');
+});
 
 
 
