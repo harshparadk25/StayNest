@@ -10,13 +10,13 @@ export const createProperty = async (req,res) => {
     }
 
     try {
-        const { title, description, location, images, pricePerNight, amenities } = req.body;
-
+        const { title, description, location, pricePerNight, amenities } = req.body;
+        const imageUrls = req.files.map(file => file.path);
         const newProperty = new Property({
             title,
             description,
             location,
-            images: images || [],
+            images: imageUrls || [],
             pricePerNight,
             amenities: amenities || [],
             owner: req.user.id,

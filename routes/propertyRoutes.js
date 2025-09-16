@@ -9,6 +9,7 @@ import {
   updateProperty,
   getHostProperties,
 } from '../controller/propertyController.js';
+import upload from '../middlewear/multer.js';
 
 const router = Router();
 
@@ -30,6 +31,7 @@ router.post(
       .isFloat({ min: 0 })
       .withMessage('Price must be a positive number'),
   ],
+  upload.array('images', 5), 
   createProperty
 );
 
@@ -56,7 +58,7 @@ router.put(
       .withMessage('Title must be at least 3 characters'),
     body('description').optional().notEmpty(),
     body('location').optional().notEmpty(),
-    body('price')
+    body('pricePerNight')
       .optional()
       .isFloat({ min: 0 })
       .withMessage('Price must be a positive number'),
