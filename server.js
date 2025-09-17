@@ -10,12 +10,14 @@ import app from './app.js';
 
 app.use(cors(
     {
-        origin: '*'
+        origin: process.env.FRONTEND_URL,
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        credentials: true,
     }
 ));
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 const server = http.createServer(app);
 connectDB();
